@@ -8,6 +8,9 @@ defmodule Vm.Application do
       %{
         id: SBPMSupervisor,
         start: {Vm.Starter, :start_link , [[:proc_default], [name: Muschi]]}
+      },
+      {
+        DynamicSupervisor, name: DynStarter, strategy: :one_for_one
       }
     ]
 

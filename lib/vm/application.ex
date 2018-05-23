@@ -10,7 +10,7 @@ defmodule Vm.Application do
         start: {Vm.Starter, :start_link , [[:proc_default], [name: Muschi]]}
       },
       {
-        DynamicSupervisor, name: DynStarter, strategy: :one_for_one
+        DynamicSupervisor, name: Vm.DynStarter, strategy: :one_for_one
       }
     ]
 

@@ -17,8 +17,13 @@ defmodule Vm.DynStarter do
 
   """
   def start_process(process) do
-    
-    {:ok, process_pid} = Vm.Process.start_link([], [name: process[:name]])
+    proc = %{
+      id: Vm.Process,
+      start: {Vm.Process, :start_link, [[], [name: process[:name]]]}
+    }
+    {:ok, process_pid} = DynamicSupervisor.start_child(Vm.DynStarter, proc)
+
+    # {:ok, process_pid} = Vm.Process.start_link([], [name: process[:name]])
     Vm.Process.start_subjects(process_pid, process[:subjects])
   end
 end

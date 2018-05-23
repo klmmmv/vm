@@ -5,8 +5,8 @@ defmodule Vm.Process do
     DynamicSupervisor.init(strategy: :one_for_one)
   end
 
-  def start_link(args, opts) do
-    DynamicSupervisor.start_link(__MODULE__, args, opts)
+  def start_link(_args, opts) do
+    DynamicSupervisor.start_link(__MODULE__, :ok, opts)
   end
 
   def start_subjects(pid, subjects) do

@@ -5,7 +5,7 @@ defmodule Vm.Subject do
     Agent.start_link(fn -> %{} end, name: name)
   end
 
-  def get_current_node(subj) do
+  def get_current_node(_subj) do
     :ok
   end
 

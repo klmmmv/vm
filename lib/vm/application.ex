@@ -5,13 +5,7 @@ defmodule Vm.Application do
 
   def start(_type, _args) do
     children = [
-      %{
-        id: SBPMSupervisor,
-        start: {Vm.Starter, :start_link , [[:proc_default], [name: Muschi]]}
-      },
-      {
-        DynamicSupervisor, name: Vm.DynStarter, strategy: :one_for_one
-      }
+      {Vm.DynStarter, name: Vm.DynStarter}
     ]
 
     opts = [strategy: :one_for_one, name: Vm.Supervisor]
